@@ -201,11 +201,7 @@ Le fichier 'script.rpy' contient le début du jeu.
 * Écrans
 * Styles
 
-=== Les labels (1/2)
-
-Les labels sont la trame narrative de l'histoire
-
-=== Les labels (2/2)
+=== Les labels
 
 [source, diff]
 ----
@@ -219,6 +215,16 @@ Les labels sont la trame narrative de l'histoire
 +    "Vous regardez autour de vous sans voir personne"
      return
 ----
+
+[.notes]
+--
+Les labels sont la trame narrative de l'histoire
+
+Créez des labels pour séparer le texte de l'histoire en blocs logiques.
+Les labels sont le coeur de Ren'Py et c'est d'eux que partent toutes les actions.
+
+Créez des personnages avec `define` et `Character` et utilisez-les dans l'histoire pour créer des discussions dans votre jeu.
+--
 
 === Les images
 
