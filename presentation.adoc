@@ -342,6 +342,105 @@ Les styles permettent de réutiliser des règles d'affichage et de les général
 +    hover_color "#0ff"
 ----
 
+== Le positionnement dans Ren'Py
+
+=== La position
+
+[cols="^.^a,^.^a", frame=none, grid=all]
+|===
+|
+[.small]
+pos (0., 0.) +
+image:resources/graphs/positioning_default.drawio.svg["Position par défaut",300]
+|
+[.small]
+pos (0.5, 0.5) +
+image:resources/graphs/positioning_position_center.drawio.svg["Ancre au centre de l'écran",300]
+|
+[.small]
+pos (1., 1.) +
+image:resources/graphs/positioning_position_bottom_right.drawio.svg["Position en bas à droite de l'image",300]
+|
+[.small]
+pos (1/4., 4/5.) +
+image:resources/graphs/positioning_position_1d4_4d5.drawio.svg["Ancre en 1/4 et 4/5",300]
+|===
+
+[.notes]
+--
+En bleu l'image, en noir la surface d'affichage.
+
+La position peut être exprimée en pixels ou en proportion (de 0. à 1.) de la surface du support d'affichage.
+--
+
+=== L'ancre
+
+[cols="^.^a,^.^a", frame=none, grid=all]
+|===
+|
+[.small]
+anchor (0., 0.) +
+image:resources/graphs/positioning_default.drawio.svg["Position par défaut",300]
+|
+[.small]
+anchor (0.5, 0.5) +
+image:resources/graphs/positioning_anchor_center.drawio.svg["Ancre au centre de l'image",300]
+|
+[.small]
+anchor (1., 1.) +
+image:resources/graphs/positioning_anchor_bottom_right.drawio.svg["Ancre en bas à droite de l'image",300]
+|
+[.small]
+anchor (1/4., 4/5.) +
+image:resources/graphs/positioning_anchor_1d4_4d5.drawio.svg["Ancre en 1/4 et 4/5",300]
+|===
+
+[.notes]
+--
+En bleu l'image, en noir la surface d'affichage.
+
+L'ancre peut être exprimée en pixels ou en proportion (de 0. à 1.) de la surface de l'image.
+--
+
+=== L'alignement
+
+[cols="^.^a,^.^a", frame=none, grid=all]
+|===
+|
+[.small]
+align (0., 0.) +
+image:resources/graphs/positioning_default.drawio.svg["Position par défaut",300]
+|
+[.small]
+align (0.5, 0.5) +
+image:resources/graphs/positioning_align_center.drawio.svg["Alignement au centre",300]
+|
+[.small]
+align (1., 1.) +
+image:resources/graphs/positioning_align_bottom_right.drawio.svg["Alignement en bas à droite",300]
+|
+[.small]
+align (1/4., 4/5.) +
+image:resources/graphs/positioning_align_1d4_4d5.drawio.svg["Alignement à 1/4 et 4/5",300]
+|===
+
+[.notes]
+--
+En bleu l'image, en noir la surface d'affichage.
+
+L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'image et de la surface du support d'affichage. Définir un alignement revient à définir l'ancre et la position à sa valeur.
+--
+
+=== L'offset
+
+[.small]
+offset (-100, 50)
+
+[.notes]
+--
+L'offset permet de déplacer - en nombre de pixels - une image après le calcul de sa position.
+--
+
 == Créer son jeu
 
 === Passer d'un label à l'autre
@@ -366,6 +465,7 @@ Les styles permettent de réutiliser des règles d'affichage et de les général
      charly "Elle n'est ni à la maison, ni au jardin."
 +    charly "Je revenais de l'étang quand... ah, l'étang..."
 +    call minijeu_etang
++    charly "Quoi qu'il en soit... pourrais-tu m'aider ?"
 +
 +label minijeu_etang:
 +    charly "Quel est le nom de ce poisson déjà ?"
@@ -569,3 +669,5 @@ graph {
 
 
 == Merci pour votre attention
+
+Des questions ?
