@@ -194,92 +194,372 @@ Le fichier 'script.rpy' contient le début du jeu.
 === Composants d'un jeu
 
 [%step]
-* Images
 * Labels
+* Images
+* Transform
 * Choix
 * Écrans
-* Variables
+* Styles
+
+=== Les labels (1/2)
+
+Les labels sont la trame narrative de l'histoire
+
+=== Les labels (2/2)
+
+[source, diff]
+----
+-define e = Character('Eileen', color="#c8ffc8")
++define charly = Character('Charly', color="#c8ffc8")
+
++label start:
+-    e "Vous venez de créer un nouveau jeu Ren'Py."
+-    e "Après avoir ajouté une histoire, des images et de la musique, vous pourrez le présenter au monde entier !"
++    charly "Bonjour"
++    "Vous regardez autour de vous sans voir personne"
+     return
+----
 
 === Les images
 
-[source, python]
+[source, diff]
 ----
-image parc jour = "images/bg/parc_jour.png"
-image lucien = "images/bg/parc_jour.png"
-label start:
-    scene parc jour
-    lucien "Bonjour"
-    show lucien at right with moveinright
-    lucien "Que fais-tu ici ?"
-    "Un drôle de personnage vous observe."
++image town = "images/backgrounds/town.jpg"
++image charly = "images/characters/charly_base.png"
++image charly smiling = "images/characters/charly_smiling.png"
+
+ define charly = Character('Charly', color="#c8ffc8")
+
+ label start:
++    scene town
+     charly "Bonjour"
+     "Vous regardez autour de vous sans voir personne"
++    show charly at center with moveinbottom
++
++    charly "Bonjour !"
++    show charly smiling
++    charly "Je suis cool, hein ?"
+     return
 ----
 
-=== Les labels
+[.notes]
+--
+Le jeu par défaut est un peu morne, ajoutons un décor et des images et affichons-les au début de l'histoire dans `game/script.rpy`.
+--
 
-Les labels constituent la trame narrative du jeu
+=== Les transform
 
-[source, python]
+Les `transform` permettent de modifier et d'animer des images.
+
+[source, diff]
 ----
-label start:
-    lucien "Bonjour"
-    lucien "Que fais-tu ici ?"
-    "Un drôle de personnage vous observe."
++transform middle():
++    align (0.5, 0.5)
++
+ label start:
+     scene town
+     charly "Bonjour"
+     "Vous regardez autour de vous sans voir personne"
+-    show charly at center with moveinbottom
++    show charly at middle with moveinbottom
 ----
 
 === Les choix
 
-Les choix permettent au joueur d'intervenir sur l'histoire
+Les choix donnent des options au joueur.
 
-[source, python]
+[source, diff]
 ----
-label start:
-    lucien "Bonjour"
-    lucien "Que fais-tu ici ?"
-    "Un drôle de personnage vous observe."
-    menu:
-        "Qu'allez-vous faire ?"
-
-        "Dire que vous êtes perdu":
-            joueur "Je suis perdu."
-        "Lui mettre un crochet du droit":
-            "Oh que non mon bonhomme !"
-            jump game_over
+     charly "Je suis cool, hein ?"
++    menu:
++        "Oui":
++            charly "Je le savais !"
++        "Non":
++            show charly -smiling
++            "Oh..."
++    charly "Je me demandais, tu as vu Michelle ?"
+     return
 ----
 
 === Les écrans
 
-Les écrans permettent des interactions spécifiques poussées.
+Les écrans permettent des interactions poussées.
 
-```py
-label game_over:
-    call screen game_over
-screen game_over:
-    text "Vous avez perdu!" align (0.5, 0.5)
-    textbutton "Recommencer l'histoire":
-        align (0.2, 0.8)
-        action Jump("start")
-    textbutton "Quitter le jeu":
-        align (0.8, 0.8)
-        action Quit(confirm = False)
-```
+[source, diff]
+----
++screen game_over:
++    add "black" alpha 0.8
++    text "Vous avez perdu!":
++        align (0.5, 0.5)
++    textbutton "Recommencer l'histoire":
++        align (0.2, 0.8)
++        action Jump("start")
++    textbutton "Quitter le jeu":
++        align (0.8, 0.8)
++        action Quit(confirm = False)
+----
+
+[source, diff]
+----
+             show charly -smiling
+             "Oh..."
++            call screen game_over
+     charly "Je me demandais, tu as vu Michelle ?"
+     return
+----
 
 [.notes]
 --
-Le  menu utilisé dans le label est un écran qui peut êre modifié
+Lors de l'usage d'un menu dans un label, c'est un écran qui gère l'affichage
 --
 
-== Pour aller plus loin
+=== Les styles
+
+Les styles permettent de réutiliser des règles d'affichage et de les généraliser.
+
+[source, diff]
+----
+ screen game_over:
++    style_prefix "game_over"
+     add "black" alpha 0.8
+     text "Vous avez perdu!":
+         align (0.5, 0.5)
+     textbutton "Recommencer l'histoire":
+         align (0.2, 0.8)
+         action Jump("start")
+     textbutton "Quitter le jeu":
+         align (0.8, 0.8)
+         action Quit(confirm = False)
+
++style game_over_button_text:
++    color "#ff0"
++    hover_color "#0ff"
+----
+
+== Créer son jeu
+
+=== Passer d'un label à l'autre
+
+[source, diff]
+----
+     charly "Je me demandais, tu as vu Michelle ?"
++    jump chapitre1
+-    return
++
++label chapitre1:
++    charly "J'ai perdu Michelle de vue depuis hier."
++    charly "Elle n'est ni à la maison, ni au jardin."
+----
+
+=== Appeler des labels
+
+[source, diff]
+----
+ label chapitre1:
+     charly "J'ai perdu Michelle de vue depuis hier."
+     charly "Elle n'est ni à la maison, ni au jardin."
++    charly "Je revenais de l'étang quand... ah, l'étang..."
++    call minijeu_etang
++
++label minijeu_etang:
++    charly "Quel est le nom de ce poisson déjà ?"
++    return
+----
+
+=== Demander des valeurs à l'utilisateur
+
+[source, diff]
+----
++default minijeu_etang_nom_poisson = ""
++image objet_truite = "images/objets/truite.png"
+ label minijeu_etang:
+     charly "Quel est le nom de ce poisson déjà ?"
+     show objet_truite
++    $ minijeu_etang_nom_poisson = renpy.input()
+     return
+----
+
+=== Prendre des décisions sans menus
+
+[source, diff]
+----
+ label minijeu_etang:
+     charly "Quel est le nom de ce poisson déjà ?"
+     show obet_truite
+     $ minijeu_etang_nom_poisson = renpy.input()
++    if 'truite' != minijeu_etang_nom_poisson:
++        charly "Je n'en suis pas si sûr..."
++    else:
++        charly "Oh oui, c'est ça !"
+     return
+----
+
+=== Créer des boucles
+
+[source, diff]
+----
+ label minijeu_etang:
+     charly "Quel est le nom de ce poisson déjà ?"
+     show obet_truite
+-    $ minijeu_etang_nom_poisson = renpy.input()
+-    if 'truite' != minijeu_etang_nom_poisson:
+-        charly "Je n'en suis pas si sûr..."
+-    else:
+-        charly "Oh oui, c'est ça !"
++    while 'truite' != minijeu_etang_nom_poisson:
++        $ minijeu_etang_nom_poisson = renpy.input()
++        if 'truite' != minijeu_etang_nom_poisson:
++            charly "Je n'en suis pas si sûr..."
++    charly "Oh oui, c'est ça !"
+     return
+----
 
 === Les images avec des couches
 
-```py
-layeredimage charly:
-    always:
-        "characters/charly/base_body.png"
-    group "eyes":
-        attribute empty default:
-            None
-```
+[source, diff]
+----
+-image charly = "images/characters/charly_base.png"
+-image charly smiling = "images/characters/charly_smiling.png"
+----
 
-=== Les transformations
+[source, diff]
+----
++layeredimage charly:
++    always:
++        "characters/charly/charly_base.png"
++    group mouth auto:
++        attribute neutral default
++        attribute smiling
++    group hat auto:
++        attribute base_hat default
++    group clothes auto:
++        attribute base_clothes default
++    group glasses auto:
++        attribute base_glasses default
++    group eyes:
++        attribute base_eyes default:
++            pos (62, 75)
+----
 
+=== Les transform
+
+[source, diff]
+----
++transform blink_eyes():
++    yzoom 1.
++    pause 8.
++
++    ease 0.1 yzoom 0.2
++    ease 0.1 yzoom 1.
++    repeat
+----
+
+[source, diff]
+----
+     group eyes:
+         attribute base_eyes default:
+-            pos (62, 75)
++            pos (62, 91) yanchor 0.5
++        at blink_eyes()
+----
+
+=== Les transform - en parallèle
+
+[source, diff]
+----
++transform cool_glasses_appear():
++    yoffset -100
++    xoffset -50
++    parallel:
++        linear 2. yoffset 0
++    parallel:
++        easein 1.5 xoffset 0
+----
+
+[source, diff]
+----
+     group glasses auto:
+         attribute base_glasses default
++        attribute cool_glasses:
++            at cool_glasses_appear()
+----
+
+[source, diff]
+----
+     menu:
+         "Oui":
++            show charly cool_glasses with dissolve
+             charly "Je le savais !"
+----
+
+== Notes additionnelles
+
+=== Organiser son projet
+
+[graphviz]
+....
+graph {
+    bgcolor = "#00000000"
+    {
+        node [shape=folder, style=filled, fillcolor="#fff"]
+        "/" [label="MonJeu"];
+        "/game" [label="game"];
+        "/game/dir..." [label="..."];
+        "/game/images" [label="images"];
+    }
+    {
+        node [shape=folder, style=filled, fillcolor="lightgreen"]
+        "/game/scripts" [label="scripts"]
+        "/game/screens" [label="screens"]
+        "/game/story" [label="story"]
+        "/game/images/characters" [label="characters"]
+        "/game/images/items" [label="items"]
+        "/game/images/backgrounds" [label="backgrounds"]
+    }
+    {
+        node [shape=note, style=filled, fillcolor="lightblue"]
+        "/log.txt" [label="log.txt"];
+        "/game/script.rpy" [label="script.rpy"];
+        "/game/file..." [label="..."];
+    }
+    {
+        node [shape=note, style=filled, fillcolor="#ff5555"]
+        "/game/characters.rpy" [label="characters.rpy"]
+        "/game/images.rpy" [label="images.rpy"]
+        "/game/transforms.rpy" [label="transforms.rpy"]
+    }
+    "/" -- "/game";
+    "/" -- "/log.txt";
+    "/game" -- "/game/dir...";
+    "/game" -- "/game/images";
+    "/game" -- "/game/script.rpy";
+    "/game" -- "/game/file...";
+    "/game" -- "/game/characters.rpy"
+    "/game" -- "/game/images.rpy"
+    "/game" -- "/game/transforms.rpy"
+    "/game" -- "/game/scripts"
+    "/game" -- "/game/screens"
+    "/game" -- "/game/story"
+    "/game/images" -- "/game/images/characters"
+    "/game/images" -- "/game/images/items"
+    "/game/images" -- "/game/images/backgrounds"
+}
+....
+
+=== Sauvegarder et partager son projet avec git
+
+* Créer un compte sur https://github.com/[GitHub] / https://about.gitlab.com/[GitLab] / https://bitbucket.org/[Bitbucket]
+** Ou auto-héberger avec https://about.gitea.com/[Gitea] / https://gogs.io/[Gogs]
+* Créer un fichier `.gitignore` avec https://www.toptal.com/developers/gitignore[Toptal]
+* Créer un fichier `.gitattributes` avec les extensions des fichiers binaires
+
+[source, ini]
+----
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+----
+
+=== Sauvegarder et partager son projet avec git dans VSCode
+
+
+== Merci pour votre attention
