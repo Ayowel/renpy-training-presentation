@@ -203,11 +203,73 @@ Le fichier 'screens.rpy' contient les différents écrans utilisés dans le jeu 
 Le fichier 'script.rpy' contient le début du jeu.
 --
 
+=== Organiser son projet
+
+[graphviz]
+....
+graph {
+    bgcolor = "#00000000"
+    {
+        node [shape=folder, style=filled, fillcolor="#fff"]
+        "/" [label="MonJeu"];
+        "/game" [label="game"];
+        "/game/dir..." [label="..."];
+        "/game/images" [label="images"];
+    }
+    {
+        node [shape=folder, style=filled, fillcolor="lightgreen"]
+        "/game/scripts" [label="scripts"]
+        "/game/screens" [label="screens"]
+        "/game/story" [label="story"]
+        "/game/images/characters" [label="characters"]
+        "/game/images/items" [label="items"]
+        "/game/images/backgrounds" [label="backgrounds"]
+    }
+    {
+        node [shape=note, style=filled, fillcolor="lightblue"]
+        "/log.txt" [label="log.txt"];
+        "/game/script.rpy" [label="script.rpy"];
+        "/game/file..." [label="..."];
+    }
+    {
+        node [shape=note, style=filled, fillcolor="#ff5555"]
+        "/game/story/chapter1.rpy" [label="chapter1.rpy"]
+        "/game/story/chapter2.rpy" [label="chapter2.rpy"]
+        "/game/characters.rpy" [label="characters.rpy"]
+        "/game/images.rpy" [label="images.rpy"]
+        "/game/transforms.rpy" [label="transforms.rpy"]
+    }
+    "/" -- "/game";
+    "/" -- "/log.txt";
+    "/game" -- "/game/dir...";
+    "/game" -- "/game/images";
+    "/game" -- "/game/script.rpy";
+    "/game" -- "/game/file...";
+    "/game" -- "/game/characters.rpy"
+    "/game" -- "/game/images.rpy"
+    "/game" -- "/game/transforms.rpy"
+    "/game" -- "/game/scripts"
+    "/game" -- "/game/screens"
+    "/game" -- "/game/story"
+    "/game/images" -- "/game/images/characters"
+    "/game/images" -- "/game/images/items"
+    "/game/images" -- "/game/images/backgrounds"
+    "/game/story" -- "/game/story/chapter1.rpy"
+    "/game/story" -- "/game/story/chapter2.rpy"
+}
+....
+
+[.notes]
+--
+L'organisationd de dossier présentée est indicative et non impérative.
+
+Les fichiers peuvent être n'importe où dans le dossier `game` sans que leur position pose de problème.
+--
+
 == Fabriquer son jeu
 
 === Composants d'un jeu
 
-[%step]
 * Labels
 * Images
 * Transform
