@@ -5,9 +5,7 @@
 :revealjs_slideNumber: true
 :source-highlighter: highlight.js
 
-== Avant-propos
 
-include::resources/components/foreword.adoc[]
 
 === Le moteur Ren'Py
 
