@@ -1,5 +1,6 @@
 = Créer des jeux avec Ren 'Py
 :nofooter:
+:customcss: resources/theme/custom.css
 :revealjs_theme: league
 :revealjs_slideNumber: true
 :source-highlighter: highlight.js

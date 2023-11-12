@@ -1,0 +1,21 @@
+section.title h1::after {
+    content: "Presenter name here";
+    font-size: 0.3em;
+    text-shadow: none;
+    text-transform: none;
+    transform: rotate(-15deg);
+    display: inline-block;
+    margin-left: 70%;
+    margin-top: 10%;
+}
+
+.margin_top_2em {
+    margin-top: 2em;
+}
+
+.reveal section img {
+    margin: none !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
