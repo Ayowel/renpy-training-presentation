@@ -77,24 +77,39 @@ jeu: https://kiminako.itch.io/where-are-you-cinderella
 
 == Créer un nouveau jeu
 
-=== En tant que barbu
-
-[%step]
-* Créer le dossier du jeu
-* Créer un dossier `game` dans le dossier
-* Créer un fichier avec l'extension `rpy` dans le dossier `game` (ex: `game/script.rpy`)
-* Créer un label `start` dans le fichier
-* Créer un écran `yesno_choice` dans le fichier
-
-=== En tant qu'humain
-
-[%step]
 * Lancer l'executable Ren'Py
 * Cliquer sur `Créer un nouveau projet`
 * Confirmer la langue utilisée
 * Saisir le nom du projet
 * Choisir les dimensions du jeu
 * Choisir le thème de couleur du jeu
+
+[.notes]
+--
+La première fois qu'il est lancé, Ren'Py demandera la langue à utiliser dans l'interface.
+
+Sélectionner 1920*1080 pour les dimensions du jeu, le reste est libre.
+--
+
+// === En tant que barbu
+
+// [%step]
+// * Créer le dossier du jeu
+// * Créer un dossier `game` dans le dossier
+// * Créer un fichier avec l'extension `rpy` dans le dossier `game` (ex: `game/script.rpy`)
+// * Créer un label `start` dans le fichier
+// * Créer un écran `yesno_choice` dans le fichier
+
+=== Configurer l'éditeur utilisé
+
+* Aller dans `préférences`
+* Cliquer sur `Editeur de texte`
+* Sélectionner l'éditeur à utiliser
+
+[.notes]
+--
+Ren'Py peut installer Visual Studio Code lui-même, cependant si vous avez un autre éditeur de code ou que vous avez installé VSCode vous-même, il peut être préférable de l'indiquer à Ren'Py.
+--
 
 === Structure d'un nouveau jeu
 
