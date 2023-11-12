@@ -103,6 +103,7 @@ Sélectionner 1920*1080 pour les dimensions du jeu, le reste est libre.
 === Configurer l'éditeur utilisé
 
 * Aller dans `préférences`
+* Sélectionner le répertoire que Ren'Py devrait utiliser pour les nouveaux projets
 * Cliquer sur `Editeur de texte`
 * Sélectionner l'éditeur à utiliser
 
