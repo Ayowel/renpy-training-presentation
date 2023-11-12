@@ -39,7 +39,7 @@ jeu (18+): https://mirrodin.itch.io/the-pleasuremancer
 
 === Des combats
 
-[cols="a,a", frame=none, grid=none]
+[.no_padding_table, cols="a,a", frame=none, grid=none]
 |===
 |
 image::resources/images/game_snapshot_colo_1.gif["Colors - Association minigame"]
@@ -58,7 +58,7 @@ jeu: https://kiminako.itch.io/colors
 
 === Tout simplement des jeux
 
-[cols="a,a", frame=none, grid=none]
+[.no_padding_table, cols="a,a", frame=none, grid=none]
 |===
 |
 image::resources/images/game_snapshot_wayc_4.gif["Where are you, Cinderella? - Tam chapter change scene"]

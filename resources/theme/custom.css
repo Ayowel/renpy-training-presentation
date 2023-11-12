@@ -9,6 +9,11 @@ section.title h1::after {
     margin-top: 10%;
 }
 
+.no_padding_table td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 .margin_top_2em {
     margin-top: 2em;
 }
