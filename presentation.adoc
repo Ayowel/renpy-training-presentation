@@ -430,16 +430,6 @@ En bleu l'image, en noir la surface d'affichage.
 L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'image et de la surface du support d'affichage. Définir un alignement revient à définir l'ancre et la position à sa valeur.
 --
 
-=== L'offset
-
-[.small]
-offset (-100, 50)
-
-[.notes]
---
-L'offset permet de déplacer - en nombre de pixels - une image après le calcul de sa position.
---
-
 == Créer son jeu
 
 === Passer d'un label à l'autre
