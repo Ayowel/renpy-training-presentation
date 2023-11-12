@@ -5,15 +5,15 @@
 :revealjs_slideNumber: true
 :source-highlighter: highlight.js
 
+== Le moteur Ren'Py
 
-
-=== Le moteur Ren'Py
+image::resources/images/renpy_logo.png[]
 
 Ren'Py est un moteur de jeu spécialisé pour la création de Visual Novel
 
 === Téléchargement
 
-* Moteur de jeu: https://www.renpy.org/latest.html
+Moteur de jeu : https://www.renpy.org/latest.html
 
 include::resources/components/download_instructions.adoc[]
 
