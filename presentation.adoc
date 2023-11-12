@@ -78,7 +78,7 @@ jeu: https://kiminako.itch.io/where-are-you-cinderella
 == Créer un nouveau jeu
 
 * Lancer l'executable Ren'Py
-* Cliquer sur `Créer un nouveau projet`
+* Cliquer sur "`Créer un nouveau projet`"
 * Confirmer la langue utilisée
 * Saisir le nom du projet
 * Choisir les dimensions du jeu
@@ -102,9 +102,9 @@ Sélectionner 1920*1080 pour les dimensions du jeu, le reste est libre.
 
 === Configurer l'éditeur utilisé
 
-* Aller dans `préférences`
+* Aller dans "`Préférences`"
 * Sélectionner le répertoire que Ren'Py devrait utiliser pour les nouveaux projets
-* Cliquer sur `Editeur de texte`
+* Cliquer sur "`Editeur de texte`"
 * Sélectionner l'éditeur à utiliser
 
 [.notes]
@@ -267,16 +267,14 @@ L'organisationd de dossier présentée est indicative et non impérative.
 Les fichiers peuvent être n'importe où dans le dossier `game` sans que leur position pose de problème.
 --
 
-== Fabriquer son jeu
-
-=== Composants d'un jeu
+== Composants d'un jeu
 
 * Labels
 * Images
-* Transform
 * Choix
 * Écrans
 * Styles
+* Transform
 
 === Les labels
 
@@ -285,7 +283,7 @@ Les fichiers peuvent être n'importe où dans le dossier `game` sans que leur po
 -define e = Character('Eileen', color="#c8ffc8")
 +define charly = Character('Charly', color="#c8ffc8")
 
-+label start:
+ label start:
 -    e "Vous venez de créer un nouveau jeu Ren'Py."
 -    e "Après avoir ajouté une histoire, des images et de la musique, vous pourrez le présenter au monde entier !"
 +    charly "Bonjour"
@@ -330,23 +328,6 @@ Créez des personnages avec `define` et `Character` et utilisez-les dans l'histo
 Le jeu par défaut est un peu morne, ajoutons un décor et des images et affichons-les au début de l'histoire dans `game/script.rpy`.
 --
 
-=== Les transform
-
-Les `transform` permettent de modifier et d'animer des images.
-
-[source, diff]
-----
-+transform middle():
-+    align (0.5, 0.5)
-+
- label start:
-     scene town
-     charly "Bonjour"
-     "Vous regardez autour de vous sans voir personne"
--    show charly at center with moveinbottom
-+    show charly at middle with moveinbottom
-----
-
 === Les choix
 
 Les choix donnent des options au joueur.
@@ -366,29 +347,18 @@ Les choix donnent des options au joueur.
 
 === Les écrans
 
+// TODO: move content to end, only show screens and explain how to change them
+
 Les écrans permettent des interactions poussées.
 
-[source, diff]
+[source, py]
 ----
-+screen game_over:
-+    add "black" alpha 0.8
-+    text "Vous avez perdu!":
-+        align (0.5, 0.5)
-+    textbutton "Recommencer l'histoire":
-+        align (0.2, 0.8)
-+        action Jump("start")
-+    textbutton "Quitter le jeu":
-+        align (0.8, 0.8)
-+        action Quit(confirm = False)
-----
+screen choice(items):
+    style_prefix "choice"
 
-[source, diff]
-----
-             show charly -smiling
-             "Oh..."
-+            call screen game_over
-     charly "Je me demandais, tu as vu Michelle ?"
-     return
+    vbox:
+        for i in items:
+            textbutton i.caption action i.action
 ----
 
 [.notes]
@@ -398,25 +368,39 @@ Lors de l'usage d'un menu dans un label, c'est un écran qui gère l'affichage
 
 === Les styles
 
+// TODO: move to end and speak about styles
+
 Les styles permettent de réutiliser des règles d'affichage et de les généraliser.
+
+[source, py]
+----
+style choice_vbox is vbox
+style choice_button is button
+style choice_button_text is button_text
+
+style choice_vbox:
+    xalign 0.5
+    ypos 405
+    yanchor 0.5
+
+    spacing gui.choice_spacing
+----
+
+=== Les transform
+
+Les `transform` permettent de modifier et d'animer des images.
 
 [source, diff]
 ----
- screen game_over:
-+    style_prefix "game_over"
-     add "black" alpha 0.8
-     text "Vous avez perdu!":
-         align (0.5, 0.5)
-     textbutton "Recommencer l'histoire":
-         align (0.2, 0.8)
-         action Jump("start")
-     textbutton "Quitter le jeu":
-         align (0.8, 0.8)
-         action Quit(confirm = False)
-
-+style game_over_button_text:
-+    color "#ff0"
-+    hover_color "#0ff"
++transform middle():
++    align (0.5, 0.5)
++
+ label start:
+     scene town
+     charly "Bonjour"
+     "Vous regardez autour de vous sans voir personne"
+-    show charly at center with moveinbottom
++    show charly at middle with moveinbottom
 ----
 
 == Le positionnement dans Ren'Py
@@ -508,7 +492,7 @@ En bleu l'image, en noir la surface d'affichage.
 L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'image et de la surface du support d'affichage. Définir un alignement revient à définir l'ancre et la position à sa valeur.
 --
 
-== Créer son jeu
+== Créer un jeu
 
 === Passer d'un label à l'autre
 
@@ -531,39 +515,62 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
      charly "J'ai perdu Michelle de vue depuis hier."
      charly "Elle n'est ni à la maison, ni au jardin."
 +    charly "Je revenais de l'étang quand... ah, l'étang..."
-+    call minijeu_etang
++    call jeu_poisson
 +    charly "Quoi qu'il en soit... pourrais-tu m'aider ?"
 +
-+label minijeu_etang:
++label jeu_poisson:
 +    charly "Quel est le nom de ce poisson déjà ?"
 +    return
 ----
 
 === Demander des valeurs à l'utilisateur
 
+// TODO: add string interpolation & player's character naming
+
 [source, diff]
 ----
-+default minijeu_etang_nom_poisson = ""
++default jeu_poisson_nom_poisson = ""
 +image objet_truite = "images/objets/truite.png"
- label minijeu_etang:
+ label jeu_poisson:
      charly "Quel est le nom de ce poisson déjà ?"
      show objet_truite
-+    $ minijeu_etang_nom_poisson = renpy.input()
++    $ jeu_poisson_nom_poisson = renpy.input("")
      return
 ----
 
-=== Prendre des décisions sans menus
+[.notes]
+--
+TODO: expliquer la différence define/default
+--
+
+=== Faire subir au joueur les conséquences de ses décisions
 
 [source, diff]
 ----
- label minijeu_etang:
+ label jeu_poisson:
      charly "Quel est le nom de ce poisson déjà ?"
-     show obet_truite
-     $ minijeu_etang_nom_poisson = renpy.input()
-+    if 'truite' != minijeu_etang_nom_poisson:
+     show objet_truite
+     $ jeu_poisson_nom_poisson = renpy.input()
++    if 'truite' != jeu_poisson_nom_poisson:
 +        charly "Je n'en suis pas si sûr..."
 +    else:
 +        charly "Oh oui, c'est ça !"
+     return
+----
+
+=== Utiliser des variables dans le texte
+
+[source, diff]
+----
+ label jeu_poisson:
+     charly "Quel est le nom de ce poisson déjà ?"
+     show objet_truite
+     $ jeu_poisson_nom_poisson = renpy.input()
+     if 'truite' != jeu_poisson_nom_poisson:
+-        charly "Je n'en suis pas si sûr..."
++        charly "[jeu_poisson_nom_poisson] ? Je n'en suis pas si sûr..."
+     else:
+         charly "Oh oui, c'est ça !"
      return
 ----
 
@@ -571,21 +578,85 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
 
 [source, diff]
 ----
- label minijeu_etang:
-     charly "Quel est le nom de ce poisson déjà ?"
-     show obet_truite
--    $ minijeu_etang_nom_poisson = renpy.input()
--    if 'truite' != minijeu_etang_nom_poisson:
--        charly "Je n'en suis pas si sûr..."
--    else:
--        charly "Oh oui, c'est ça !"
-+    while 'truite' != minijeu_etang_nom_poisson:
-+        $ minijeu_etang_nom_poisson = renpy.input()
-+        if 'truite' != minijeu_etang_nom_poisson:
-+            charly "Je n'en suis pas si sûr..."
-+    charly "Oh oui, c'est ça !"
++default nom_joueur = ""
++define joueur = Character("[nom_joueur]")
+----
+[source, diff]
+----
+     call jeu_poisson
+     charly "Quoi qu'il en soit... pourrais-tu m'aider ?"
++    charly "Au fait, comment t'appelles-tu ?"
++    while '' == nom_joueur:
++        $ nom_joueur = renpy.input("")
++        if '' == nom_joueur:
++            charly "Mais ce n'est pas un nom ça !"
++    joueur "Je m'appelle [nom_joueur]"
      return
 ----
+
+
+=== Les sons et musiques
+
+```diff
++define audio.miaulement_chat = "sound/Chat_miaulement.ogg"
++define audio.ambiance_catnap = "music/Catnap.ogg"
+
+ label start:
+     scene town
++    play music ambiance_catnap
++    play sound miaulement_chat
+     charly "Bonjour"
+```
+
+=== Créer un écran simple
+
+[source, diff]
+----
++screen game_over:
++    add "black" alpha 0.8
++    text "Vous avez perdu!":
++        align (0.5, 0.5)
++    textbutton "Recommencer l'histoire":
++        align (0.2, 0.8)
++        action Jump("start")
++    textbutton "Quitter le jeu":
++        align (0.8, 0.8)
++        action Quit(confirm = False)
+----
+
+[source, diff]
+----
+             show charly -smiling
+             "Oh..."
++            call screen game_over
+     charly "Je me demandais, tu as vu Michelle ?"
+     return
+----
+
+== Pour aller plus loin
+
+=== Traduire son jeu
+
+* Aller dans le menu Ren'Py
+* Sélectionner "`Générer les fichiers de traduction`"
+* Choisir un nom de langue
+* Décocher "`Génère des chaînes de caractères vides pour les traductions`"
+* Cliquer sur "`Générer les fichiers de traduction`" 
+
+=== Utiliser la traduction
+
+```diff
+ screen preferences():
+      # [...] Des éléments de l'écran ici
+           vbox:
+                style_prefix "check"
+                label _("Avance rapide")
+                textbutton _("Texte non lu") action Preference("skip", "toggle")
+                textbutton _("Après les choix") action Preference("after choices", "toggle")
+                textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
++          textbutton _("Anglais") action Language("english")
++          textbutton _("Français") action Language(None)
+```
 
 === Les images avec des couches
 
@@ -636,6 +707,18 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
 +        at blink_eyes()
 ----
 
+=== Partager son jeu
+
+* Aller dans le menu Ren'Py
+* Sélectionner le jeu dans les projets
+* Cliquer sur "`Compiler les paquets`"
+* Sélectionner les OS ciblés
+* Cliquer sur "`Compiler`"
+
+=== Les variables persistentes
+
+// TODO
+
 === Les transform - en parallèle
 
 [source, diff]
@@ -665,59 +748,13 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
              charly "Je le savais !"
 ----
 
-== Notes additionnelles
+== Pour aller beaucoup plus loin
 
-=== Organiser son projet
+// === Live2D
+//
+// TODO: add slide on Live2D https://www.youtube.com/watch?v=5xF6-8ECQxQ
 
-[graphviz]
-....
-graph {
-    bgcolor = "#00000000"
-    {
-        node [shape=folder, style=filled, fillcolor="#fff"]
-        "/" [label="MonJeu"];
-        "/game" [label="game"];
-        "/game/dir..." [label="..."];
-        "/game/images" [label="images"];
-    }
-    {
-        node [shape=folder, style=filled, fillcolor="lightgreen"]
-        "/game/scripts" [label="scripts"]
-        "/game/screens" [label="screens"]
-        "/game/story" [label="story"]
-        "/game/images/characters" [label="characters"]
-        "/game/images/items" [label="items"]
-        "/game/images/backgrounds" [label="backgrounds"]
-    }
-    {
-        node [shape=note, style=filled, fillcolor="lightblue"]
-        "/log.txt" [label="log.txt"];
-        "/game/script.rpy" [label="script.rpy"];
-        "/game/file..." [label="..."];
-    }
-    {
-        node [shape=note, style=filled, fillcolor="#ff5555"]
-        "/game/characters.rpy" [label="characters.rpy"]
-        "/game/images.rpy" [label="images.rpy"]
-        "/game/transforms.rpy" [label="transforms.rpy"]
-    }
-    "/" -- "/game";
-    "/" -- "/log.txt";
-    "/game" -- "/game/dir...";
-    "/game" -- "/game/images";
-    "/game" -- "/game/script.rpy";
-    "/game" -- "/game/file...";
-    "/game" -- "/game/characters.rpy"
-    "/game" -- "/game/images.rpy"
-    "/game" -- "/game/transforms.rpy"
-    "/game" -- "/game/scripts"
-    "/game" -- "/game/screens"
-    "/game" -- "/game/story"
-    "/game/images" -- "/game/images/characters"
-    "/game/images" -- "/game/images/items"
-    "/game/images" -- "/game/images/backgrounds"
-}
-....
+== Les à-côtés
 
 === Sauvegarder et partager son projet avec git
 
