@@ -959,8 +959,27 @@ graph {
 *.jpg filter=lfs diff=lfs merge=lfs -text
 ----
 
-=== Sauvegarder et partager son projet avec git dans VSCode
+=== Obtenir de l'aide en anglais
 
+Documentation : +
+https://www.renpy.org/doc/html/
+
+Forum : +
+https://lemmasoft.renai.us/forums/
+
+Groupe discord : +
+https://discord.gg/invite/6ckxWYm
+
+Groupe IRC : +
+https://webchat.freenode.net/?channels=renpy
+
+=== Obtenir de l'aide
+
+Chaîne youtube anglophone : +
+https://www.youtube.com/@vimi
+
+Groupe discord francophone : +
+https://discord.com/tnXvXKH6jZ
 
 == Merci pour votre attention
 
