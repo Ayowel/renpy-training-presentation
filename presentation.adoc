@@ -347,8 +347,6 @@ Les choix donnent des options au joueur.
 
 === Les écrans
 
-// TODO: move content to end, only show screens and explain how to change them
-
 Les écrans permettent des interactions poussées.
 
 [source, py]
@@ -363,12 +361,14 @@ screen choice(items):
 
 [.notes]
 --
-Lors de l'usage d'un menu dans un label, c'est un écran qui gère l'affichage
+Toutes les interactions avec le joueur passent par le biais d'un écran.
+
+Lors de l'usage d'un menu dans un label, c'est un écran qui gère l'affichage.
+
+Cet écran est défini dans le fichier `game/screens.rpy` par défaut.
 --
 
 === Les styles
-
-// TODO: move to end and speak about styles
 
 Les styles permettent de réutiliser des règles d'affichage et de les généraliser.
 
@@ -525,8 +525,6 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
 
 === Demander des valeurs à l'utilisateur
 
-// TODO: add string interpolation & player's character naming
-
 [source, diff]
 ----
 +default jeu_poisson_nom_poisson = ""
@@ -565,7 +563,7 @@ TODO: expliquer la différence define/default
  label jeu_poisson:
      charly "Quel est le nom de ce poisson déjà ?"
      show objet_truite
-     $ jeu_poisson_nom_poisson = renpy.input()
+     $ jeu_poisson_nom_poisson = renpy.input("")
      if 'truite' != jeu_poisson_nom_poisson:
 -        charly "Je n'en suis pas si sûr..."
 +        charly "[jeu_poisson_nom_poisson] ? Je n'en suis pas si sûr..."
@@ -593,7 +591,6 @@ TODO: expliquer la différence define/default
 +    joueur "Je m'appelle [nom_joueur]"
      return
 ----
-
 
 === Les sons et musiques
 
@@ -641,7 +638,8 @@ TODO: expliquer la différence define/default
 * Sélectionner "`Générer les fichiers de traduction`"
 * Choisir un nom de langue
 * Décocher "`Génère des chaînes de caractères vides pour les traductions`"
-* Cliquer sur "`Générer les fichiers de traduction`" 
+* Cliquer sur "`Générer les fichiers de traduction`"
+* Les traductions sont dans "`game/tl`"
 
 === Utiliser la traduction
 
@@ -659,6 +657,8 @@ TODO: expliquer la différence define/default
 ```
 
 === Les images avec des couches
+
+// référence pour 2h : La présentation devrait finir autour de cette section
 
 [source, diff]
 ----
@@ -704,7 +704,7 @@ TODO: expliquer la différence define/default
          attribute base_eyes default:
 -            pos (62, 75)
 +            pos (62, 91) yanchor 0.5
-+        at blink_eyes()
++            at blink_eyes()
 ----
 
 === Partager son jeu
