@@ -734,7 +734,29 @@ TODO: expliquer la différence define/default
 
 === Les variables persistentes
 
-// TODO
+[source, diff]
+----
++default persistent.game_started = False
+----
+
+[source, diff]
+----
+ label start:
++    $ persistent.game_started = True
+----
+
+[source, diff]
+----
+ screen navigation():
+   vbox:
+     # [...] Des choses ici
+     if main_menu:
+-      textbutton _("Nouvelle partie") action Start()
++      if persistent.game_started:
++        textbutton _("Première partie") action Start()
++      else:
++        textbutton _("Nouvelle partie") action Start()
+----
 
 === Les transform - en parallèle
 
