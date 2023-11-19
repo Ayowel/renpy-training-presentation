@@ -906,6 +906,39 @@ graph {
              charly "Je le savais !"
 ----
 
+=== Les shaders
+
+[source, diff]
+----
++init python:
++    renpy.register_shader("example.gradient", variables="""
++        uniform vec4 u_left_color;
++        uniform vec4 u_right_color;
++        uniform vec2 u_model_size;
++        varying float v_gradient_done;
++        attribute vec4 a_position;
++    """, vertex_300="""
++        v_gradient_done = a_position.x / u_model_size.x;
++    """, fragment_300="""
++        float gradient_done = v_gradient_done;
++        gl_FragColor *= mix(u_left_color, u_right_color, gradient_done);
++    """)
+----
+
+[source, diff]
+----
++transform gradient:
++    shader "example.gradient"
++    u_left_color (1.0, 0.0, 0.0, 1.0)
++    u_right_color (0.0, 0.0, 1.0, 1.0)
+----
+
+// TODO: test, fix, and clarify
+
+[source, diff]
+----
++    show charly at gradient
+----
 
 // === Live2D
 //
