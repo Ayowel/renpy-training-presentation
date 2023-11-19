@@ -715,6 +715,23 @@ TODO: expliquer la différence define/default
 * Sélectionner les OS ciblés
 * Cliquer sur "`Compiler`"
 
+=== Exécuter du code Python au démarrage
+
+[source, diff]
+----
++init python:
++     def filtrer_nom_poisson(name):
++         return name.strip().lower()
+----
+
+[source, diff]
+----
+     $ jeu_poisson_nom_poisson = renpy.input("")
+-    if 'truite' != jeu_poisson_nom_poisson:
++    if 'truite' != filtrer_nom_poisson(jeu_poisson_nom_poisson):
+         charly "[jeu_poisson_nom_poisson] ? Je n'en suis pas si sûr..."
+----
+
 === Les variables persistentes
 
 // TODO
