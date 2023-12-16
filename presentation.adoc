@@ -945,6 +945,99 @@ graph {
 //
 // TODO: add slide on Live2D https://www.youtube.com/watch?v=5xF6-8ECQxQ
 
+== Pour aller trop loin
+
+[.notes]
+--
+Les fonctionnalités qui suivent ne sont pas documentées et aucun support ne sera fourni dessus par le/les mainteneurs de Ren'Py.
+
+Elles sont documentées ci-après dans un but informatif et éducatif.
+--
+
+=== Un petit jeu
+
+[source, python]
+----
+label start:
+    "Bonjour"
+    $ renpy.quit()
+
+screen yesno_prompt(message, yes_action, no_action):
+    add "black" alpha 0.8
+    window:
+        style_prefix "yesno_prompt"
+        vbox:
+            text message
+            textbutton _("Oui") action yes_action
+            textbutton _("Non") action no_action
+
+style yesno_prompt_button_text is button_text:
+    hover_color "#f0f"
+----
+
+[.notes]
+--
+Il est possible de créer un nouveau jeu Ren'Py sans passer par l'interface graphique. En effets, un simple label `start` dans un fichier `*.rpy` est tout ce dont Ren'Py a besoin pour pouvoir lancer un jeu.
+
+Ne reste qu'à définir l'écran utilisé lorsque le joueur tente de quitter le jeu pour avoir un "jeu" entièrement fonctionnel.
+--
+
+=== La ligne de commande
+
+[source, bash]
+----
+# Vérifie qu'il n'y a pas d'erreurs/anomalies dans le jeu
+renpy.sh 'chemin/du/jeu' lint --error-code
+
+# Génère les fichiers de traduction en anglais
+renpy.sh 'chemin/du/jeu' translate 'english'
+
+# Crée les binaires à distribuer du jeu
+renpy.sh '' distribute 'chemin/du/jeu'
+
+# Crée les binaires android du jeu
+renpy.sh '' android_build 'chemin/du/jeu'
+----
+
+[.notes]
+--
+Ren'Py expose des commandes équivalentes à celles disponibles par l'interface du launcher. Certaines commandes sont fournies directement par le moteur Ren'Py (comme `lint` et `translate`), d'autres sont fournies par le launcher, référencé en en donnant le chemin d'accès ou en fournissant un paramètre vide (comme `distribute` et `android_build`).
+
+En interne
+--
+
+=== Les tests
+
+[source, python]
+----
+testcase test_demo:
+    run Jump("demo_label")
+    click
+    click
+    pause .6
+    click
+    "Choix 1"
+    click until "Choix 2"
+    click
+    type "Lyra\n"
+----
+
+
+[source, bash]
+----
+# Lance le test
+renpy.sh 'chemin/du/jeu' test test_demo
+----
+
+[.notes]
+--
+Ren'Py permet de déclarer des cas de test.
+
+Ces tests sont principalement utilisés pour vérifier le bon fonctionnement du launcher Ren'Py mais peuvent aussi être utilisés pour tester des jeux ou programmer des animations de gameplay.
+
+Ils restent cependant limités en fonctionnalités et requièrent l'implémentation de beaucoup de fonctions de support pour pouvoir réellement faire du test avec et requièrent de pouvoir suivre un ordre linéaire d'exécution
+--
+
 == Les à-côtés
 
 === Sauvegarder et partager son projet avec git
