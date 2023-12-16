@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    asciidoctor (2.0.20)
+    asciidoctor-kroki (0.9.1)
+      asciidoctor (~> 2.0)
+    asciidoctor-revealjs (5.1.0)
+      asciidoctor (>= 2.0.0, < 3.0.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  asciidoctor-kroki (~> 0.9.1)
+  asciidoctor-revealjs (~> 5.1.0)
+
+BUNDLED WITH
+   2.3.25
