@@ -2,6 +2,7 @@
 :nofooter:
 :customcss: resources/theme/custom.css
 :revealjs_theme: league
+:revealjs_hash: true
 :revealjs_slideNumber: true
 :source-highlighter: highlight.js
 
