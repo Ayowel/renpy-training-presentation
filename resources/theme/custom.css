@@ -1,5 +1,5 @@
 section.title h1::after {
-    content: "Presenter name here";
+    content: "Appuyer sur 'S' pour les notes de présentation";
     font-size: 0.2em;
     text-shadow: none;
     text-transform: none;
