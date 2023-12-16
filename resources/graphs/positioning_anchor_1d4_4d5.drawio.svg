@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:34724f43cf3ea806c00b6fb989235a29253fd0644d84eb0b3d1cbabb197a4f8f
-size 1970
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="370px" height="220px" viewBox="-0.5 -0.5 371 221" class="ge-export-svg-dark">
+    <defs>
+            <style type="text/css">
+                svg.ge-export-svg-dark &gt; * { filter: invert(100%) hue-rotate(180deg); }&#xa;svg.ge-export-svg-dark image { filter: invert(100%) hue-rotate(180deg) }
+            </style>
+        </defs>
+    <g>
+        <rect x="80" y="50" width="210" height="120" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <rect x="60" y="10" width="80" height="50" fill="#dae8fc" stroke="#6c8ebf" pointer-events="all"/>
+        <path d="M 80 50 m -8 0 l 16 0 m -8 -8 l 0 16" fill="none" stroke="rgb(0, 0, 0)" stroke-width="2" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+</svg>
