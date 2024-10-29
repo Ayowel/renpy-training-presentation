@@ -6,6 +6,11 @@
 :revealjs_slideNumber: true
 :source-highlighter: highlight.js
 
+[.notes]
+--
+Appuyer sur espace pour avancer dans la présentation, les notes visibles ici fourniront les explications allant avec le support.
+--
+
 include::resources/components/pre_slides.adoc[]
 
 == Le moteur Ren'Py
@@ -20,6 +25,12 @@ Moteur de jeu : https://www.renpy.org/latest.html
 
 include::resources/components/download_instructions.adoc[]
 
+[.notes]
+--
+Téléchargez et installez la dernière version de Ren'Py pour suivre la présentation.
+Il suffit de copier le contenu de l'archive dans un dossier et de lancer le programme `renpy` qu'il contient.
+--
+
 == Que peut-on faire avec Ren'Py ?
 
 === Des jeux d'horreur
@@ -28,6 +39,13 @@ image::resources/images/game_snapshot_doki_1.jpg["Doki Doki Litterature club - s
 
 [.notes]
 --
+Doki Doki Literature Club est un jeu qui se présente sous la forme d'un jeu de romance pour se transformer
+par la suite en jeu d'horreur qui va jusqu'à permettre à ses joueurs de supprimer ou modifier des fichiers
+du jeu pour changer son déroulement.
+
+Le jeu a aussi de nombreux "mods" - des modifications créées par la communauté - qui sont rendus possibles et
+simples à mettre en place par la nature ouverte et modulaire de Ren'Py.
+
 jeu: https://store.steampowered.com/app/698780/Doki_Doki_Literature_Club/
 --
 
@@ -37,6 +55,11 @@ image::resources/images/game_snapshot_plea_1.png["The pleasuremancer - Forest Ba
 
 [.notes]
 --
+The pleasuremancer est un eroge qui alterne phases de combat et narration en occupant l'entre-deux par des
+mini-jeux (de dés, de cultivation, de fabrication, ...) et qui utilise des décors intéractifs pour permettre
+aux joueurs curieux d'être récompensés pour avoir pris le temps de chercher les secrets des lieux qu'ils
+explorent.
+
 jeu (18+): https://mirrodin.itch.io/the-pleasuremancer
 --
 
@@ -56,6 +79,9 @@ image::resources/images/game_snapshot_colo_4.gif["Colors - Fruit cutter minigame
 
 [.notes]
 --
+Colors est un petit jeu qui vise les enfants et alterne phases de narration et mini-jeux
+pour raconter son histoire.
+
 jeu: https://kiminako.itch.io/colors
 --
 
@@ -75,6 +101,9 @@ image::resources/images/game_snapshot_wayc_3.jpg["Where are you, Cinderella? - A
 
 [.notes]
 --
+Where are you Cinderella? (WAYC) est un pur "Visual Novel" où le joueur alterne lecture et choix pour
+avancer dans le récit et influer dessus.
+
 jeu: https://kiminako.itch.io/where-are-you-cinderella
 --
 
@@ -113,6 +142,9 @@ Sélectionner 1920*1080 pour les dimensions du jeu, le reste est libre.
 [.notes]
 --
 Ren'Py peut installer Visual Studio Code lui-même, cependant si vous avez un autre éditeur de code ou que vous avez installé VSCode vous-même, il peut être préférable de l'indiquer à Ren'Py.
+
+Ren'Py possède une extension VSCode qui proposera une coloration syntaxique et une aide à l'écriture du code.
+Si vous utilisez un autre éditeur sans support explicite de Ren'Py, utiliser la cooration syntaxique de Python devrait être un paliatif décent.
 --
 
 === Structure d'un nouveau jeu
@@ -265,7 +297,9 @@ graph {
 
 [.notes]
 --
-L'organisationd de dossier présentée est indicative et non impérative.
+Nous recommandons la création de dossiers et fichiers supplémentaires pur organiser le jeu.
+
+Cette organisation est indicative et non impérative.
 
 Les fichiers peuvent être n'importe où dans le dossier `game` sans que leur position pose de problème.
 --
@@ -278,6 +312,14 @@ Les fichiers peuvent être n'importe où dans le dossier `game` sans que leur po
 * Écrans
 * Styles
 * Transform
+
+[.notes]
+--
+Les slides qui suivent se basent sur un nouveau jeu dans lequel les ressources de présentation disponibles pour
+l'entrainement auraient été copiées.
+
+Par la suite, les lignes commençant par un "-" sont les lignes du fichier à retirer, celles commençant par un "+" sont les lignes à ajouter.
+--
 
 === Les labels
 
@@ -329,6 +371,8 @@ Créez des personnages avec `define` et `Character` et utilisez-les dans l'histo
 [.notes]
 --
 Le jeu par défaut est un peu morne, ajoutons un décor et des images et affichons-les au début de l'histoire dans `game/script.rpy`.
+
+Ici, un ajoute une scène de "ville" et on affiche Charly, notre personnage, en le faisant glisser dans la scène à son arrivée et en le faisant sourire peu après.
 --
 
 === Les choix
@@ -348,6 +392,15 @@ Les choix donnent des options au joueur.
      return
 ----
 
+[.notes]
+--
+Les choix permettent d'intéragir avec le joueur et de lui donner du contrôle sur le déroulement de l'histoire.
+Ils peuvent être anodins ou capitaux, à vous de décider!
+
+Ici, selon la réponse du joueur, charly perdra ou non son sourire pour la suite de la conversation. Un choix
+des plus terribles, vous en conviendrez.
+--
+
 === Les écrans
 
 Les écrans permettent des interactions poussées.
@@ -364,11 +417,12 @@ screen choice(items):
 
 [.notes]
 --
-Toutes les interactions avec le joueur passent par le biais d'un écran.
+Toutes les interactions avec le joueur passent par le biais d'un écran, ici nous faisons un zoom sur un des écrans par défaut de Ren'Py.
 
-Lors de l'usage d'un menu dans un label, c'est un écran qui gère l'affichage.
+Lors de l'usage d'un menu dans un label, c'est cet écran qui gère l'affichage des options proposées au joueur.
 
 Cet écran est défini dans le fichier `game/screens.rpy` par défaut.
+On parlera séparément de ses différents éléments par la suite.
 --
 
 === Les styles
@@ -389,6 +443,14 @@ style choice_vbox:
     spacing gui.choice_spacing
 ----
 
+[.notes]
+--
+Ici, on s'intéressera aux styles utilisés dans l'écran précédent.
+
+Les boutons et leur texte sont des bouton classiques, là où la vbox (qui fait que les boutons sont empilés verticalement)
+a des attribut supplémentaires pour la positionner et bien afficher son contenu.
+--
+
 === Les transform
 
 Les `transform` permettent de modifier et d'animer des images.
@@ -405,6 +467,11 @@ Les `transform` permettent de modifier et d'animer des images.
 -    show charly at center with moveinbottom
 +    show charly at middle with moveinbottom
 ----
+
+[.notes]
+--
+Ici, la transform a pour simple objectif de positionner Charly a un endroit en particulier, mais on pourrait aussi l'utiliser pour animer celui-ci.
+--
 
 == Le positionnement dans Ren'Py
 
@@ -434,7 +501,9 @@ image:resources/graphs/positioning_position_1d4_4d5.drawio.svg["Ancre en 1/4 et 
 --
 En bleu l'image, en noir la surface d'affichage.
 
-La position peut être exprimée en pixels ou en proportion (de 0. à 1.) de la surface du support d'affichage.
+La position peut être exprimée en pixels entiers ou en proportion (valeurs flottantes de 0. à 1.) de la surface du support d'affichage.
+
+Le positionnement d'une image défini avec `pos` déplace son coin supérieur gauche par défaut.
 --
 
 === L'ancre
@@ -464,6 +533,8 @@ image:resources/graphs/positioning_anchor_1d4_4d5.drawio.svg["Ancre en 1/4 et 4/
 En bleu l'image, en noir la surface d'affichage.
 
 L'ancre peut être exprimée en pixels ou en proportion (de 0. à 1.) de la surface de l'image.
+
+L'ancre d'une image définie avec `anchor` déplace le point de l'image utilisé pour les traitements fait dessus (positionnement avec `pos` ou rotation avec une transform).
 --
 
 === L'alignement
@@ -492,7 +563,7 @@ image:resources/graphs/positioning_align_1d4_4d5.drawio.svg["Alignement à 1/4 e
 --
 En bleu l'image, en noir la surface d'affichage.
 
-L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'image et de la surface du support d'affichage. Définir un alignement revient à définir l'ancre et la position à sa valeur.
+L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'image et de la surface du support d'affichage. Définir un alignement revient à définir l'ancre et la position à sa valeur, il s'agit d'une valeur synthétique qui permet de facilement positionner une image.
 --
 
 == Créer un jeu
@@ -510,6 +581,14 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
 +    charly "Elle n'est ni à la maison, ni au jardin."
 ----
 
+[.notes]
+--
+La narration étant faite de labels, il est nécessaire de pouvoir passer d'un label à l'autre, ce que fait le `jump`.
+
+A noter que, si Ren'Py arrive à la fin d'un label, il passera automatiquement au suivant dans le fichier.
+Le jump donné en exemple n'est donc pas nécessaire dans ce cas particulier.
+--
+
 === Appeler des labels
 
 [source, diff]
@@ -526,6 +605,15 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
 +    return
 ----
 
+[.notes]
+--
+A la différence d'un saut fait avec `jump`, un appel de label fait avec `call` se "souvient" d'où il a été fait et peut
+donc être utilisé pour faire un aparté pour une intéraction particulière avec le joueur.
+
+Un label appelé avec un `call` devrait contenir un `return` à un moment ou effectuer un `jump` vers un autre label qui
+fera le `return` plus tard.
+--
+
 === Demander des valeurs à l'utilisateur
 
 [source, diff]
@@ -534,14 +622,21 @@ L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'imag
 +image objet_truite = "images/objets/truite.png"
  label jeu_poisson:
      charly "Quel est le nom de ce poisson déjà ?"
-     show objet_truite
++    show objet_truite
 +    $ jeu_poisson_nom_poisson = renpy.input("")
      return
 ----
 
 [.notes]
 --
-TODO: expliquer la différence define/default
+Certaines intéractions requièrent de demander à l'utilisateur de saisir du texte, ce qui est possible avec `renpy.input`.
+
+Ici, on demande au joueur d'identifier un poisson qu'on lui montre à l'écran.
+Le résultat est ensuite stocké dans la variable `jeu_poisson_nom_poisson` et pourra être controlé ultérieurement.
+
+Si vous avez l'oeil acéré, vous aurez noté qu'on a utilisé `define` au début pour déclarer notre personnage, et ici `default`
+pour déclarer notre variable. De manière générale, `default` doit être utilisé pour les éléments variables de l'histoire, et
+`define` pour les éléments constants.
 --
 
 === Faire subir au joueur les conséquences de ses décisions
@@ -559,6 +654,13 @@ TODO: expliquer la différence define/default
      return
 ----
 
+[.notes]
+--
+Il est possible d'utiliser des conditions dans les labels pour décider ou non de dire quelque chose au joueur.
+
+Ici, pour contrôler la réponse donnée à la question d'identification de poisson et afficher un texte en conséquence.
+--
+
 === Utiliser des variables dans le texte
 
 [source, diff]
@@ -574,6 +676,11 @@ TODO: expliquer la différence define/default
          charly "Oh oui, c'est ça !"
      return
 ----
+
+[.notes]
+--
+Lorsque nécessaire, il est même possible d'afficher un texte sauvegardé dans une variable afin de rappeler au joueur sa réponse.
+--
 
 === Créer des boucles
 
@@ -595,6 +702,12 @@ TODO: expliquer la différence define/default
      return
 ----
 
+[.notes]
+--
+Et afin de s'assurer que le joueur ne puisse échapper à une décision, il est possible de boucler - potentiellement indéfiniment - tant
+que le joueur ne fournit pas une réponse satisfaisante. Ici, pour choisir un prénom.
+--
+
 === Les sons et musiques
 
 ```diff
@@ -607,6 +720,15 @@ TODO: expliquer la différence define/default
 +    play sound miaulement_chat
      charly "Bonjour"
 ```
+
+[.notes]
+--
+Et que serait un jeu sans une bande son ? De la même manière qu'il est possible d'afficher des images,
+il est possible de jouer des sons simplement en les ayant préalablement déclarés.
+
+Les musiques lancées se joueront indéfiniment (ou jusqu'à ce qu'une autre la remplace), tandis que les
+sons ne seront joués qu'une fois.
+--
 
 === Créer un écran simple
 
@@ -633,6 +755,13 @@ TODO: expliquer la différence define/default
      return
 ----
 
+[.notes]
+--
+Il est possible de créer des écrans sur mesure, ici un écran de Game Over renvoyant le joueur au début de l'histoire.
+
+Un écran peut être appelé comme le serait un label en précisant `screen` dans l'instruction.
+--
+
 == Pour aller plus loin
 
 === Traduire son jeu
@@ -658,6 +787,15 @@ TODO: expliquer la différence define/default
 +          textbutton _("Anglais") action Language("english")
 +          textbutton _("Français") action Language(None)
 ```
+
+[.notes]
+--
+Ajouter des boutons dans les préférences pour passer d'un langue à l'autre.
+En l'état, le changement de langue ne persistera pas en cas de redémarrage.
+
+Les texte affichés dans les labels sont tous automatiquement traduit mais il n'en va pas de même pour les textes des écrans,
+raison pour laquelle les textes devant être traduit doivent être passés à la fonction `_` pour être marqués comme étant traduisibles.
+--
 
 === Les images avec des couches
 
@@ -687,6 +825,20 @@ TODO: expliquer la différence define/default
 +        attribute base_eyes default:
 +            pos (62, 75)
 ----
+
+[.notes]
+--
+Plutôt que d'utiliser de multiples images de personnage, il est possible d'obtenir une grande variété d'expressions
+avec un plus faible nombre d'images en réutilisant un nez par ci ou des yeux par là. Pour ce faire, il faut utiliser
+des images à couches.
+
+Ces images permettent de définir une apparence par défaut qui sera "surchargée" par d'autres apparences selon les noms
+d'attributs fournis. Chaque attribut se verra associé une image définie explicitement (comme dans le `always`) ou
+implitement selon le nom de la layeredimage, le groupe, et l'attribut considérés.
+
+Ici, l'attribut "smiling" peut être ajouté ou retiré de Charly pour ne modifier que la forme de sa bouche, tandis que
+les yeux sont une petite image positionnée manuellement sur Charly.
+--
 
 === Les transform
 
@@ -1037,7 +1189,7 @@ Ren'Py permet de déclarer des cas de test.
 
 Ces tests sont principalement utilisés pour vérifier le bon fonctionnement du launcher Ren'Py mais peuvent aussi être utilisés pour tester des jeux ou programmer des animations de gameplay.
 
-Ils restent cependant limités en fonctionnalités et requièrent l'implémentation de beaucoup de fonctions de support pour pouvoir réellement faire du test avec et requièrent de pouvoir suivre un ordre linéaire d'exécution
+Ils restent cependant limités en fonctionnalités, requièrent l'implémentation de beaucoup de fonctions de support pour pouvoir réellement faire du test avec et requièrent de pouvoir suivre un ordre linéaire d'exécution (ce qui devient plus difficile au fur et à mesure qu'un jeu grossit).
 --
 
 == Les à-côtés
