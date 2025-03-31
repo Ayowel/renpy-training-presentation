@@ -937,10 +937,10 @@ les yeux sont une petite image positionnée manuellement sur Charly.
 
 [source, diff]
 ----
-+transform blink_eyes():
++transform blink_eyes(): # Blink every 8 seconds
 +    yzoom 1.
-+    pause 8.
 +
++    pause 8.
 +    ease 0.1 yzoom 0.2
 +    ease 0.1 yzoom 1.
 +    repeat
@@ -955,7 +955,16 @@ les yeux sont une petite image positionnée manuellement sur Charly.
 +            at blink_eyes()
 ----
 
+[.notes]
+--
+Pour animer des images avec des transform, il faut décrire les séquences de modification, typiquement sous la forme `WARPER TIME [TARGET VALUE]...`.
 
+Le `TIME` est le temps que doit prendre une animation.
+
+Le `[TARGET VALUE]` est un ensemble de valeurs que devront avoir les attributs de l'image à la fin de l'animation.
+
+Le `WARPER` est la manière de laquelle l'animation doit avoir lieu (typiquement, `linear` ou `ease`).
+--
 
 === Exécuter du code Python au démarrage
 
