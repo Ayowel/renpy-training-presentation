@@ -1213,6 +1213,12 @@ graph {
 +    show charly at gradient
 ----
 
+[.notes]
+--
+Les shaders permettent de faire des modifications complexes sur des images.
+Ici, par exemple, le shader modifiera "simplement" les couleurs de Charlie d'une couleur (à gauche) à l'autre (à droite).
+--
+
 // === Live2D
 //
 // TODO: add slide on Live2D https://www.youtube.com/watch?v=5xF6-8ECQxQ
