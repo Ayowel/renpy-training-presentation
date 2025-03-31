@@ -1015,6 +1015,13 @@ Ces blocs contiennent typiquement les fonctions et classes qui sont utilisés da
 +        textbutton _("Nouvelle partie") action Start()
 ----
 
+[.notes]
+--
+Les variables persistentes sont sauvegardées indépendamment des sauvegardes de parties et permettent notamment de mémoriser les préférences de configuration du joueur ou, comme ici, d'ajouter des comportements spécifiques selon des actions passées du joueur.
+
+A noter: les variables persistentes ne devraient contenir que des types pythons de base (des nombres, des chaînes de caractères, des listes et des dictionnaires), pas des class custom car celles-ci ne seront pas encore disponibles au moment ou les valeurs persistentes seront chargées.
+--
+
 == Les éléments d'écran
 
 === Eléments d'affichage
