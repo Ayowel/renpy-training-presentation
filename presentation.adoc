@@ -1046,6 +1046,15 @@ image "une_image"
 ```
 |===
 
+[.notes]
+--
+Les éléments `text` et `label` permettent d'afficher du texte.
+Les labels encapsulent le texte dans une fenêtre qui peut être utilisée pour appliquer des styles particuliers.
+
+Les éléments `add` et `image` sont des alias l'un de l'autre et permettent d'afficher un `Displayable` arbitraire (qui peut être une image, mais aussi un élément d'affichage customisé, une transform, ...).
+`image` est aujourd'hui déprécié et ne devrait pas être utilisé pour créer de nouveaux éléments.
+--
+
 === Eléments d'interaction
 
 [cols="^a,^a", frame=none, grid=none]
