@@ -1078,8 +1078,8 @@ imagebutton:
 |
 ```py
 mousearea:
-     hovered NullAction()
-     unhovered NullAction()
+    hovered NullAction()
+    unhovered NullAction()
 ```
 |
 ```py
@@ -1091,6 +1091,18 @@ key "k":
     action NullAction()
 ```
 |===
+
+[.notes]
+--
+Les variantes de bouton `button`, `textbutton` et `imagebutton` permettent de réagir au clic et au passage de la souris avec des `action`s spécifiques.
+Si le joueur joue au clavier ou à la souris, Ren'Py fera aussi en sorte que les flèches du clavier permettent de naviguer d'un bouton à l'autre.
+
+`input` permet d'attendre une saisie de texte par l'utilisateur.
+
+`mousearea` crée des zones interactibles sur un écran, par exemple pour faire apparaître un bouton au passage de la souris sur un zone spécifique de l'écran.
+
+`key` permet d'associer des actions spécifiques à des touches du clavier (par exemple pour créer des boutons on/off pour des menus particuliers).
+--
 
 === Eléments de structure
 
