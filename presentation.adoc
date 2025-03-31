@@ -761,16 +761,21 @@ Il est possible de créer des écrans sur mesure, ici un écran de Game Over ren
 Un écran peut être appelé comme le serait un label en précisant `screen` dans l'instruction.
 --
 
-== Pour aller plus loin
-
-=== Traduire son jeu
+== Traduire son jeu
 
 * Aller dans le menu Ren'Py
 * Sélectionner "`Générer les fichiers de traduction`"
 * Choisir un nom de langue
 * Décocher "`Génère des chaînes de caractères vides pour les traductions`"
 * Cliquer sur "`Générer les fichiers de traduction`"
-* Les traductions sont dans "`game/tl`"
+* Les traductions à éditer sont dans "`game/tl`"
+
+[.notes]
+--
+Ren'Py permet de générer des fichiers contenant les lignes de texte à traduire.
+
+Suivre les instructions de la diapositive pour les générer, il faudra ensuite traduire le texte présent dans les fichiers générés.
+--
 
 === Utiliser la traduction
 
@@ -789,16 +794,87 @@ Un écran peut être appelé comme le serait un label en précisant `screen` dan
 
 [.notes]
 --
-Ajouter des boutons dans les préférences pour passer d'un langue à l'autre.
-En l'état, le changement de langue ne persistera pas en cas de redémarrage.
+Ajouter des boutons dans les préférences pour permettre au joueur de passer d'une langue à l'autre.
 
 Les texte affichés dans les labels sont tous automatiquement traduit mais il n'en va pas de même pour les textes des écrans,
 raison pour laquelle les textes devant être traduit doivent être passés à la fonction `_` pour être marqués comme étant traduisibles.
 --
 
-=== Les images avec des couches
+=== Traduire des ressources
 
-// référence pour 2h : La présentation devrait finir autour de cette section
+[graphviz]
+....
+graph {
+    bgcolor = "#00000000"
+    {
+        node [shape=folder, style=filled, fillcolor="#fff"]
+        "/game" [label="game"];
+        "/game/tl" [label="tl"];
+        "/game/tl/english" [label="english"];
+    }
+    {
+        node [shape=folder, style=filled, fillcolor="lightblue"]
+        "/game/images" [label="images"];
+        "/game/images/characters" [label="characters"];
+        "/game/tl/english/images" [label="images"];
+        "/game/tl/english/images/characters" [label="characters"];
+    }
+    {
+        node [shape=note, style=filled, fillcolor="lightblue"]
+        "/game/images/characters/charly.png" [label="charly.png"];
+        "/game/tl/english/images/characters/charly.png" [label="charly.png"];
+
+    }
+    "/game" -- "/game/images";
+    "/game/images" -- "/game/images/characters";
+    "/game/images/characters" -- "/game/images/characters/charly.png";
+    "/game" -- "/game/tl";
+    "/game/tl" -- "/game/tl/english"
+    "/game/tl/english" -- "/game/tl/english/images";
+    "/game/tl/english/images" -- "/game/tl/english/images/characters";
+    "/game/tl/english/images/characters" -- "/game/tl/english/images/characters/charly.png";
+}
+....
+
+[.notes]
+--
+Il est possible d'utiliser des versions d'images ou de sons spécifiques dans les langues traduites. Pour cela, il suffit de mettre dans le dossier de traduction le fichier avec le même chemin que celui trouvable dans le dossier de base du jeu.
+--
+
+=== Editer les fichiers traduits
+
+.Fichier de traduction dans `game/tl`
+[source, py]
+--
+# game/script.rpy:4
+translate english start_3c8fc231:
+
+    # charly "Bonjour"
+    charly "Hi"
+--
+
+[source, diff]
+--
+ label start:
+     scene town
+     play sound miaulement_chat
+-    charly "Bonjour"
++    charly "Bonjour !" id start_3c8fc231
+--
+
+[.notes]
+--
+Les traductions du texte des labels utilisent des identifiants générés sur la base du contenu traduit.
+
+Lors de modifications du texte, éviter la création de nouvelles entrées de traduction, il peut être souhaitable de spécifier explicitement l'identifiant qui avait été généré avant la modification.
+
+Cela permettra de faire que le jeu continue à utiliser les anciennes traductions.
+--
+
+
+== Pour aller plus loin
+
+=== Les images avec des couches
 
 [source, diff]
 ----
