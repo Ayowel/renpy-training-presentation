@@ -19,6 +19,11 @@ image::resources/images/renpy_logo.png[]
 
 Ren'Py est un moteur de jeu spécialisé pour la création de Visual Novel
 
+[.notes]
+--
+Le moteur de jeu fonctionne à base de fichiers texte et utilise Python 3 dans les cas où de la programmation est requise pour obtenir un comportement particulier.
+--
+
 === Téléchargement
 
 Moteur de jeu : https://www.renpy.org/latest.html
