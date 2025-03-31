@@ -874,6 +874,24 @@ Cela permettra de faire que le jeu continue à utiliser les anciennes traduction
 
 == Pour aller plus loin
 
+=== Partager son jeu
+
+* Aller dans le menu Ren'Py
+* Sélectionner le jeu dans les projets
+* Cliquer sur "`Compiler les paquets`"
+* Sélectionner les OS ciblés
+* Cliquer sur "`Compiler`"
+
+[.notes]
+--
+Suivre les instructions pour créer une version partageable du jeu.
+
+Par défaut, les fichiers à partager seront dans un dossier 'NomDuJeu-dists' dans le dossier parent du projet.
+
+**Attention:** de base, Ren'Py mettera tous les fichiers présents dans le dossier de votre projet dans l'archive.
+Assurez-vous de ne pas laisser de fichiers contenant des informations privées dans le dossier de votre projet lorsque vous générez une version de votre projet.
+--
+
 === Les images avec des couches
 
 [source, diff]
@@ -937,13 +955,7 @@ les yeux sont une petite image positionnée manuellement sur Charly.
 +            at blink_eyes()
 ----
 
-=== Partager son jeu
 
-* Aller dans le menu Ren'Py
-* Sélectionner le jeu dans les projets
-* Cliquer sur "`Compiler les paquets`"
-* Sélectionner les OS ciblés
-* Cliquer sur "`Compiler`"
 
 === Exécuter du code Python au démarrage
 
