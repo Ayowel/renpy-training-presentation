@@ -1109,17 +1109,29 @@ Si le joueur joue au clavier ou à la souris, Ren'Py fera aussi en sorte que les
 [cols="^a,^a", frame=none, grid=none]
 |===
 |
+[source, python]
+--
 fixed:
+  text "1" # Derrière le 2
+  text "2"
+--
+
 [graphviz]
 ....
 graph {
     node [shape="square", style="filled", fillcolor = "#fff"]
     bgcolor = "#00000000"
-    1
+    2
 }
 ....
 |
+[source, python]
+--
 hbox:
+  text "1"
+  text "2"
+--
+
 [graphviz]
 ....
 graph {
@@ -1130,7 +1142,12 @@ graph {
 }
 ....
 |
-grid:
+[source, python]
+--
+grid 2 2:
+  for i in range(1, 5):
+    text str(i)
+--
 
 [graphviz]
 ....
@@ -1146,7 +1163,12 @@ graph {
 }
 ....
 |
+[source, python]
+--
 vbox:
+  text "1"
+  text "2"
+--
 
 [graphviz]
 ....
@@ -1157,6 +1179,15 @@ graph {
 }
 ....
 |===
+
+[.notes]
+--
+`fixed` est un élément de structure pour les écrans qui permet de créer des zones d'affichages arbitraires dans un écran.
+
+`hbox`/`vbox` créent des lignes/colonnes où chaque élément s'ajoute à la suite des précédents dans la liste.
+
+`grid` crée des tableaux, chaque élément mis dans la grille en devient une nouvelle cellule.
+--
 
 // TODO: add frame and window usage
 
