@@ -533,7 +533,7 @@ En bleu l'image, en noir la surface d'affichage.
 
 L'ancre peut être exprimée en pixels ou en proportion (de 0. à 1.) de la surface de l'image.
 
-L'ancre d'une image définie avec `anchor` déplace le point de l'image utilisé pour les traitements fait dessus (positionnement avec `pos` ou rotation avec une transform).
+L'ancre d'une image définie avec `anchor` déplace le point de l'image utilisé pour les traitements faits dessus (positionnement avec `pos` ou rotation avec une transform).
 --
 
 === L'alignement
