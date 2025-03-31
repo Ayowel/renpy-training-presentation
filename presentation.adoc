@@ -983,6 +983,12 @@ Le `WARPER` est la manière de laquelle l'animation doit avoir lieu (typiquement
          charly "[jeu_poisson_nom_poisson] ? Je n'en suis pas si sûr..."
 ----
 
+[.notes]
+--
+Ren'Py permet de créer des blocs de code qui seront exécutés au démarrage du jeu.
+Ces blocs contiennent typiquement les fonctions et classes qui sont utilisés dans le reste du jeu.
+--
+
 === Les variables persistentes
 
 [source, diff]
