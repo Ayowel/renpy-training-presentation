@@ -120,22 +120,16 @@ jeu: https://kiminako.itch.io/where-are-you-cinderella
 * Saisir le nom du projet
 * Choisir les dimensions du jeu
 * Choisir le thème de couleur du jeu
+* Importer les https://github.com/Ayowel/renpy-training-presentation/releases/latest/[assets] du jeu dans `game/`
 
 [.notes]
 --
 La première fois qu'il est lancé, Ren'Py demandera la langue à utiliser dans l'interface.
 
 Sélectionner 1920*1080 pour les dimensions du jeu, le reste est libre.
+
+Après avoir créé le jeu, il faudra importer les fichiers sur lesquels repose le reste de la présentation dans le sous-dossier `game/` pour pouvoir la suivre dans les meilleures conditions.
 --
-
-// === En tant que barbu
-
-// [%step]
-// * Créer le dossier du jeu
-// * Créer un dossier `game` dans le dossier
-// * Créer un fichier avec l'extension `rpy` dans le dossier `game` (ex: `game/script.rpy`)
-// * Créer un label `start` dans le fichier
-// * Créer un écran `yesno_choice` dans le fichier
 
 === Configurer l'éditeur utilisé
 
