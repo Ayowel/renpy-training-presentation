@@ -13,6 +13,8 @@ Appuyer sur espace pour avancer dans la présentation, les notes visibles ici fo
 
 include::resources/components/pre_slides.adoc[]
 
+ifndef::disable-section-renpy-info[]
+
 == Le moteur Ren'Py
 
 image::resources/images/renpy_logo.png[]
@@ -35,6 +37,9 @@ include::resources/components/download_instructions.adoc[]
 Téléchargez et installez la dernière version de Ren'Py pour suivre la présentation.
 Il suffit de copier le contenu de l'archive dans un dossier et de lancer le programme `renpy` qu'il contient.
 --
+
+endif::[]
+ifndef::disable-section-what-can-be-done[]
 
 == Que peut-on faire avec Ren'Py ?
 
@@ -111,6 +116,9 @@ avancer dans le récit et influer dessus.
 
 jeu: https://kiminako.itch.io/where-are-you-cinderella
 --
+
+endif::[]
+ifndef::disable-section-create-new-game[]
 
 == Créer un nouveau jeu
 
@@ -303,6 +311,9 @@ Cette organisation est indicative et non impérative.
 Les fichiers peuvent être n'importe où dans le dossier `game` sans que leur position pose de problème.
 --
 
+endif::[]
+ifndef::disable-section-game-components[]
+
 == Composants d'un jeu
 
 * Labels
@@ -472,6 +483,9 @@ Les `transform` permettent de modifier et d'animer des images.
 Ici, la transform a pour simple objectif de positionner Charly a un endroit en particulier, mais on pourrait aussi l'utiliser pour animer celui-ci.
 --
 
+endif::[]
+ifndef::disable-section-positioning[]
+
 == Le positionnement dans Ren'Py
 
 === La position
@@ -564,6 +578,9 @@ En bleu l'image, en noir la surface d'affichage.
 
 L'alignement est à exprimer en proportion (de 0. à 1.) de la surface de l'image et de la surface du support d'affichage. Définir un alignement revient à définir l'ancre et la position à sa valeur, il s'agit d'une valeur synthétique qui permet de facilement positionner une image.
 --
+
+endif::[]
+ifndef::disable-section-make-a-game[]
 
 == Créer un jeu
 
@@ -761,6 +778,9 @@ Il est possible de créer des écrans sur mesure, ici un écran de Game Over ren
 Un écran peut être appelé comme le serait un label en précisant `screen` dans l'instruction.
 --
 
+endif::[]
+ifndef::disable-section-translation[]
+
 == Traduire son jeu
 
 * Aller dans le menu Ren'Py
@@ -871,6 +891,8 @@ Lors de modifications du texte, éviter la création de nouvelles entrées de tr
 Cela permettra de faire que le jeu continue à utiliser les anciennes traductions.
 --
 
+endif::[]
+ifndef::disable-section-go-further[]
 
 == Pour aller plus loin
 
@@ -1021,6 +1043,9 @@ Les variables persistentes sont sauvegardées indépendamment des sauvegardes de
 
 A noter: les variables persistentes ne devraient contenir que des types pythons de base (des nombres, des chaînes de caractères, des listes et des dictionnaires), pas des class custom car celles-ci ne seront pas encore disponibles au moment ou les valeurs persistentes seront chargées.
 --
+
+endif::[]
+ifndef::disable-section-screen-components[]
 
 == Les éléments d'écran
 
@@ -1191,6 +1216,9 @@ graph {
 
 // TODO: add frame and window usage
 
+endif::[]
+ifndef::disable-section-go-much-further[]
+
 == Pour aller beaucoup plus loin
 
 === Les transform - en parallèle
@@ -1265,6 +1293,9 @@ Ici, par exemple, le shader modifiera "simplement" les couleurs de Charlie d'une
 // === Live2D
 //
 // TODO: add slide on Live2D https://www.youtube.com/watch?v=5xF6-8ECQxQ
+
+endif::[]
+ifndef::disable-section-go-too-far[]
 
 == Pour aller trop loin
 
@@ -1359,6 +1390,9 @@ Ces tests sont principalement utilisés pour vérifier le bon fonctionnement du 
 Ils restent cependant limités en fonctionnalités, requièrent l'implémentation de beaucoup de fonctions de support pour pouvoir réellement faire du test avec et requièrent de pouvoir suivre un ordre linéaire d'exécution (ce qui devient plus difficile au fur et à mesure qu'un jeu grossit).
 --
 
+endif::[]
+ifndef::disable-section-asides[]
+
 == Les à-côtés
 
 === Sauvegarder et partager son projet avec git
@@ -1399,3 +1433,5 @@ https://discord.com/tnXvXKH6jZ
 == Merci pour votre attention
 
 Des questions ?
+
+endif::[]
