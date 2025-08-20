@@ -30,6 +30,8 @@ Le moteur de jeu fonctionne à base de fichiers texte et utilise Python 3 dans l
 
 Moteur de jeu : https://www.renpy.org/latest.html
 
+Assets utilisés: https://github.com/Ayowel/renpy-training-presentation/releases/latest
+
 include::resources/components/download_instructions.adoc[]
 
 [.notes]
@@ -89,7 +91,7 @@ image::resources/images/game_snapshot_colo_4.gif["Colors - Fruit cutter minigame
 
 [.notes]
 --
-Colors est un petit jeu qui vise les enfants et alterne phases de narration et mini-jeux
+Colors est un petit jeu fait en deux mois qui vise les enfants et alterne phases de narration et mini-jeux
 pour raconter son histoire.
 
 jeu: https://kiminako.itch.io/colors
